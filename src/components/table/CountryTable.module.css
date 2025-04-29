@@ -1,0 +1,14 @@
+th,
+td {
+  text-align: center;
+  border: 1px solid #e5e7eb;
+  padding: 0.5rem;
+}
+
+th {
+  cursor: pointer;
+}
+
+tr {
+  text-align: center;
+}
