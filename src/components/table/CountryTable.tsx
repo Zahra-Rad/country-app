@@ -1,9 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
 import { useState, useEffect } from "react";
 import { fetchCountries } from "../../services/api";
+import Pagination from "../Pagination/Pagination";
 import TableHeader from "./TableHeader";
 import TableBody from "./TableBody";
+import "./CountryTable.module.css";
+
+const COUNTRIES_PER_PAGE = 10;
+
 export default function CountryTable() {
+  const [currentPage, setCurrentPage] = useState(1);
   const { data: countries = [], isLoading, error } = useQuery({
     queryKey: ["countries"],
     queryFn: fetchCountries,
@@ -16,6 +22,11 @@ export default function CountryTable() {
       setSortDirection("asc");
     }
   };
+  const totalPages = Math.ceil(filteredCountries.length / COUNTRIES_PER_PAGE);
+
+  if (isLoading) return <div className="text-center py-4">Loading...</div>;
+  if (error) return <div className="text-center py-4 text-red-600">Error: Failed to fetch countries</div>;
+
   return (
     <div className="container mx-auto px-4">
           <div className="overflow-hidden rounded-lg shadow">
@@ -26,6 +37,10 @@ export default function CountryTable() {
               <TableBody countries={currentCountries} />
             </table>
           </div>
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={setCurrentPage}
     </div>
   );
 }
