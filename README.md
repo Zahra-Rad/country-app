@@ -1,46 +1,114 @@
-# Getting Started with Create React App
+# Country Information Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React-based web application that displays country information with features like sorting, searching, and data visualization.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- Display country information in a table format
+- Sort countries by name, population, and area
+- Search functionality to filter countries
+- Pagination for easy navigation
+- Population and area chart visualization
+- Responsive design using Tailwind CSS
 
-### `npm start`
+## Tech Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- **Frontend Framework**: React 18
+- **Language**: TypeScript
+- **State Management**: React Query (TanStack Query)
+- **Styling**: Tailwind CSS
+- **Data Visualization**: Chart.js
+- **HTTP Client**: Axios
+- **Testing**: Jest, React Testing Library
+- **Containerization**: Docker (optional)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Project Structure
 
-### `npm test`
+```
+country-app/
+├── src/
+│   ├── components/
+│   │   ├── table/          # Table-related components
+│   │   ├── chart/          # Chart visualization components
+│   │   ├── Pagination/     # Pagination component
+│   │   └── SearchBar/      # Search functionality
+│   ├── services/           # API and data services
+│   ├── App.tsx             # Main application component
+│   └── index.tsx           # Application entry point
+├── public/                 # Static assets
+└── package.json            # Project dependencies
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Components
 
-### `npm run build`
+### CountryTable
+The main component that displays country data in a table format. Features include:
+- Sorting by name, population, and area
+- Integration with SearchBar and Pagination
+- Data fetching using React Query
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### PopulationChart
+Visualizes country data using Chart.js:
+- Displays population and area data
+- Interactive chart with tooltips
+- Metric selection (population/area)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Pagination
+Handles table navigation:
+- Previous/Next buttons
+- Current page indicator
+- Disabled states for first/last page
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### SearchBar
+Provides search functionality:
+- Real-time filtering
+- Case-insensitive search
+- Debounced input handling
 
-### `npm run eject`
+## Getting Started
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Prerequisites
+- Node.js (v14 or higher)
+- npm or yarn
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Installation
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd country-app
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+2. Install dependencies:
+```bash
+npm install
+```
 
-## Learn More
+3. Start the development server:
+```bash
+npm start
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+4. Run tests:
+```bash
+npm test
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Testing
+
+The project uses Jest and React Testing Library for testing. Test files are located in the `tests` directory.
+
+To run tests:
+```bash
+npm test              # Run tests in watch mode
+npm run test:coverage # Generate test coverage report
+```
+
+## API Integration
+
+The application uses the REST Countries API to fetch country data. The API service is implemented in `src/services/api.ts`.
+
+### API Endpoints
+- Base URL: `https://restcountries.com/v3.1`
+- Endpoints:
+  - `/all` - Get all countries
